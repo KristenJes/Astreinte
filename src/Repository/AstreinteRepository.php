@@ -19,6 +19,18 @@ class AstreinteRepository extends ServiceEntityRepository
         parent::__construct($registry, Astreinte::class);
     }
 
+    public function findByYear($year, $order = "ASC")
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.annee = :annee')
+            ->setParameter('annee', $year)
+            ->addOrderBy('a.annee', $order)
+            ->addOrderBy('a.semaine', $order)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Astreinte[] Returns an array of Astreinte objects
     //  */

@@ -214,4 +214,9 @@ class Utilisateur implements UserInterface
     public function eraseCredentials(){ }
 
     public function getSalt(){ }
+
+
+    public function toString(){
+        return $this->getPrenom() . " " . $this->getNom();
+    }
 }
