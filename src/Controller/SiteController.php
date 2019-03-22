@@ -5,10 +5,11 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\AstreinteRepository;
-use App\Entity\Week;
+use App\Entity\NotInDatabase\Week;
 use Doctrine\Common\Persistence\ObjectManager;
 use App\Entity\Astreinte;
 use App\Entity\BasicFunction;
+use App\Entity\NotInDatabase\Weeks;
 
 class SiteController extends AbstractController
 {
@@ -38,24 +39,11 @@ class SiteController extends AbstractController
     {
         // echo date('F n', strtotime('2010-W50'));
         $year = date("Y");
-
         $astreintes = $repo->findByYear($year);
-        dump($astreintes);
-
-        $weeks = array();
-        $date = new \DateTime('first day of January ' . $year);
+        $weeks = new Weeks($astreintes, intval($year));
         
-        while ($date->format("Y") == $year) {
-            $astreinte = BasicFunction::astreinteWithDate($astreintes, $date);
-            $weeks[$date->format("F")][] = new Week(new \DateTime($date->format("d-m-Y")), $astreinte);
-            $date->modify("+7 days");
-        }
-
-        dump($weeks);
-
-
         return $this->render('site/display.html.twig', [
-            "weeks" => $weeks
+            "weeks" => $weeks->test()
         ]);
     }
 }

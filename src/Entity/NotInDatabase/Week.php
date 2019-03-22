@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\NotInDatabase;
+use App\Entity\Astreinte;
 
 class Week
 {
