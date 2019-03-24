@@ -31,6 +31,18 @@ class AstreinteRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findByIds(array $vals)
+    {
+        return $this->createQueryBuilder('a')
+                    ->andWhere('a.annee = :annee')
+                    ->andWhere('a.semaine = :semaine')
+                    ->setParameter('annee', $vals['annee'])
+                    ->setParameter('semaine', $vals['semaine'])
+                    ->getQuery()
+                    ->getOneOrNullResult()
+        ;
+    }
+
     // /**
     //  * @return Astreinte[] Returns an array of Astreinte objects
     //  */

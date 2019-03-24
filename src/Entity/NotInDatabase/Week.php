@@ -36,7 +36,7 @@ class Week
         return "set";
     }
 
-    public function getMondayDateOfWeek(): ?\DateTime
+    public function getMondayDate(): ?\DateTime
     {        
         $date = $this->date;
         if ($date->format('N') == 1) {
@@ -45,9 +45,8 @@ class Week
             return $date->modify('last monday');
         }
     }
-    public function getSundayDateOfWeek(): ?\DateTime
-    {
-        
+    public function getSundayDate(): ?\DateTime
+    {        
         $date = $this->date;
         if ($date->format('N') == 7) {
             return $date;

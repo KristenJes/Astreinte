@@ -11,13 +11,6 @@ class Astreinte
 {
     /**
      * @ORM\Id()
-     * @ORM\ManyToOne(targetEntity="App\Entity\Utilisateur", inversedBy="astreintes")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $utilisateur;
-
-    /**
-     * @ORM\Id()
      * @ORM\Column(type="smallint")
      */
     private $semaine;
@@ -29,26 +22,15 @@ class Astreinte
     private $annee;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Utilisateur", inversedBy="astreintes")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $utilisateur;
+
+    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $commentaire;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function getUtilisateur(): ?Utilisateur
-    {
-        return $this->utilisateur;
-    }
-
-    public function setUtilisateur(?Utilisateur $utilisateur): self
-    {
-        $this->utilisateur = $utilisateur;
-
-        return $this;
-    }
 
     public function getSemaine(): ?int
     {
@@ -70,6 +52,18 @@ class Astreinte
     public function setAnnee(int $annee): self
     {
         $this->annee = $annee;
+
+        return $this;
+    }
+
+    public function getUtilisateur(): ?Utilisateur
+    {
+        return $this->utilisateur;
+    }
+
+    public function setUtilisateur(?Utilisateur $utilisateur): self
+    {
+        $this->utilisateur = $utilisateur;
 
         return $this;
     }

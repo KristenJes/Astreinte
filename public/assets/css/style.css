@@ -1,0 +1,13 @@
+html, body{
+    background-color: #6691b4;
+    color: white;
+}
+
+h2{
+    font-size: 35px;
+    font-weight: 700;
+}
+a:not(.btn), a:visited:not(.btn), a:hover:not(.btn), a:active:not(.btn){
+    text-decoration: none;
+    color: white;
+}

@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Entity\NotInDatabase;
-use App\Entity\Astreinte;
 
 class Weeks
 {
@@ -54,7 +53,7 @@ class Weeks
         }
     }
 
-    public function test()
+    public function getByMonth()
     {
         $weeks = array();
         $date = new \DateTime('first day of January ' . $this->year);
@@ -67,10 +66,15 @@ class Weeks
                 $this->defineNextAstreinte();
             }
 
-            $weeks[$date->format("F")][] = new Week(new \DateTime($date->format("Y-m-d")), $astreinte);
+            $weeks[$this->frDate($date)][] = new Week(new \DateTime($date->format("Y-m-d")), $astreinte);
             $date->modify("+7 days");
         }
 
         return $weeks;
+    }
+
+    public function frDate($date)
+    {
+        return strftime("%B", $date->getTimestamp());
     }
 }
