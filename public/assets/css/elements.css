@@ -1,0 +1,74 @@
+.container-fluid{
+
+}
+
+.year-display{
+    padding: 20px;
+    margin-left: 50px;
+}
+.year-display *{
+    display: inline-block;
+}
+.year-display a{
+    margin: 0 40px;
+}
+.year-display a i{
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.weeks{
+    margin-bottom: 25px;
+    color: white;
+}
+.weeks .month-title{
+
+}
+
+.week{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.week-top{
+    display: flex;
+    padding: 0 5px;
+}
+
+.week-top .week-date{
+    margin-right: auto;
+}
+
+.week-content{
+    text-align: center;
+    padding: 10px 0;
+    cursor: pointer;
+}
+.week-content.passed{
+    background-color: #757575;
+}
+.week-content.notset{
+    background-color: #e53935;
+}
+.week-content.set{
+    background-color: #43A047;
+}
+
+.week-content .week-user{
+    display: block;
+    margin: 0;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+
+
+.title{
+    text-align: center;
+}
+
+.title p{
+    margin: 0;
+    margin-top: -15px;    
+    text-transform: uppercase;
+}

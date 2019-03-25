@@ -70,5 +70,6 @@ class AppFixtures extends Fixture
 
         // Ajout dans la base de données
         $manager->flush();
+        // Fixtures ajoutées
     }
 }
