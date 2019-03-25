@@ -7,8 +7,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Proxies\__CG__\App\Entity\Utilisateur;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Doctrine\ORM\EntityRepository;
+use App\Entity\Utilisateur;
 
 class AstreinteType extends AbstractType
 {
@@ -17,6 +18,13 @@ class AstreinteType extends AbstractType
         $builder
             ->add('utilisateur', EntityType::class, [
                 'class' => Utilisateur::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('u')
+                                ->where('u.roles LIKE :roles')
+                                ->setParameter('roles', '%USER%')
+                                ->addOrderBy('u.prenom')
+                                ->addOrderBy('u.nom');
+                },
                 'choice_label' => function($utilisateur){
                     return $utilisateur->toString();
                 }

@@ -19,11 +19,15 @@ class AstreinteRepository extends ServiceEntityRepository
         parent::__construct($registry, Astreinte::class);
     }
 
-    public function findByYear($year, $order = "ASC")
+    public function findByYear($year, $semaine = 1, $order = "ASC")
     {
         return $this->createQueryBuilder('a')
             ->andWhere('a.annee = :annee')
+            ->andWhere('a.semaine >= :semaine')
+
             ->setParameter('annee', $year)
+            ->setParameter('semaine', $semaine)
+
             ->addOrderBy('a.annee', $order)
             ->addOrderBy('a.semaine', $order)
             ->getQuery()

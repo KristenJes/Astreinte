@@ -118,38 +118,39 @@ class SiteController extends AbstractController
     public function generate($year, UtilisateurRepository $utili_repo, AstreinteRepository $astr_repo)
     {
         $now = new \DateTime();
-        $date = (new \DateTime())->setISODate($year, $now->format("W"));
+        $semaine = $year == date("Y") ? $now->format("W") : 1;
+        $date = (new \DateTime())->setISODate($year, $semaine);
         // Suppression de toutes les anciennes Astreintes
-        $astreintes = $astr_repo->findByYear($year);
+        $astreintes = $astr_repo->findByYear($year, $semaine);
+
         foreach($astreintes as $astreinte){
-            if($astreinte->getSemaine() > $now->format("W")){
+            if($date > $now){
                 $this->em->remove($astreinte);
             }
-        }        
+        } 
         $this->em->flush();
 
         // Récupère tous les utilisateurs
-        $utilisateurs =  $utili_repo->findAll();
+        $utilisateurs = $utili_repo->findByRole("USER"); // changer en LIKE ASTREINTEUR
         $i = mt_rand(0, count($utilisateurs));
-        
-        $date = new \DateTime($year."-01-01");
 
-        // Ajoute toutes les Astreintes pour l'année 'year'
-        while ($date->format("Y") == $year) {
-            if($date > $now){
+        $interval = new \DateInterval('P1W');
+        $period   = new \DatePeriod(new \DateTime($year."-01-04"), $interval, new \DateTime($year."-12-28"));
+        foreach ($period as $dt) {
+            if($dt > $now){                
                 if($i >= count($utilisateurs)) $i = 0;
-
+    
                 $astreinte = new Astreinte();
                 $astreinte->setAnnee($year)
-                          ->setSemaine(intval($date->format("W")))
-                          ->setUtilisateur($utilisateurs[$i])
+                            ->setSemaine(intval($dt->format("W")))
+                            ->setUtilisateur($utilisateurs[$i])
                 ;
                 $this->em->persist($astreinte);
-
+    
                 $i++;
             }
-            $date->modify("+7 days");
         }
+
         $this->em->flush();
 
         return $this->redirectToRoute("site.astreintes", ["year" => $year]);

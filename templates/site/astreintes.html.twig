@@ -31,7 +31,7 @@ window.onload = function(){
                         <span class="week-date">{{ week.getMondayDate() | date("d/m") }} - {{ week.getSundayDate() | date("d/m") }}</span>
                         <span class="week-number">sem. {{ week.getWeekNum() }}</span>
                     </div>
-                    <a href="{{ path('site.astreinte', {'year': year, 'week_num': week.getWeekNum()}) }}">
+                    <a {% if week.getClass() != 'passed' %}href="{{ path('site.astreinte', {'year': year, 'week_num': week.getWeekNum()}) }}"{% endif %}{% if week.getClass() == 'passed' %} style="cursor: default;"{% endif %}>
                         <div class="week-content {{ week.getClass() }}">
                             <p class="week-user">
                             {% if week.getAstreinte() is not null %}
