@@ -1,0 +1,18 @@
+.container-fluid-custom{
+    text-align: center;
+}
+
+
+
+.row-custom > *{
+    margin:auto;
+}
+
+.image{
+
+    height: 200px;
+    width: 200px;
+
+    background-color: white;
+
+}
