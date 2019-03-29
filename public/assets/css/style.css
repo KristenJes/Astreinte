@@ -11,3 +11,7 @@ a:not(.btn), a:visited:not(.btn), a:hover:not(.btn), a:active:not(.btn){
     text-decoration: none;
     color: white;
 }
+
+.container-fluid{
+    margin-top: 50px;
+}

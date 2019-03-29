@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+<div class="row mt-5">
+    <div class="mx-auto col-md-4">
+        <h2 class="text-center">Connexion</h2>
+
+        <form action="{{ path('security.login') }}" method="post">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authentificate_secu') }}">
+            <div class="form-group mb-3">
+                <label for="_username">E-mail<span class="mandatory"></span></label>
+                <input class="form-control" type="email" value="{{ last_username }}" id="_username" name="_username" placeholder="Entrer votre Email" required="required" />
+            </div>
+
+            <div class="form-group mb-2">
+                <label for="_password">Mot de passe<span class="mandatory"></span></label>
+                <input class="form-control" type="password" id="_password" name="_password" placeholder="Entrer votre Mot de passe" required="required" />
+            </div>
+            
+            <div class="custom-control custom-checkbox mb-3">
+                <input type="checkbox" class="custom-control-input" id="remember_me" name="_remember_me">
+                <label class="custom-control-label" for="remember_me">Rester connecté</label>
+            </div>
+
+            <div class="form-group mt-4 text-center">
+                <button type="submit" class="btn btn-primary">Connexion</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+{% block footer %}
+    
+{% endblock %}
