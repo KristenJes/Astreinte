@@ -2,13 +2,12 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        {# <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"> #}
+        <title>{% block title %}Welcome!{% endblock %}</title>
         <link href="https://bootswatch.com/4/lux/bootstrap.min.css" rel="stylesheet">
         <link href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" rel="stylesheet">
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
         <link href="{{ asset('css/elements.css') }}" rel="stylesheet">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block style %}{% endblock %}
     </head>
     <body>
         <div class="container-fluid">

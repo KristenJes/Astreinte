@@ -1,16 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello SiteController!{% endblock %}
+{% block style %}<link href="{{ asset('css/index.css') }}" rel="stylesheet">{% endblock %}
+{% block title %}Accueil{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div class="row">
+    <div class="col-lg-5">
+        
+        <div class="image-holder">
+            <div class="image-container">
+                <img src="
+                {% if astreinte.utilisateur.photo is null %}
+                    {{  asset('images/empty.png') }}
+                {% else %}
+                    {{ astreinte.utilisateur.getPhoto() }}
+                {% endif %}" />                
+            </div>
+        </div>
+        
+        <div class="texts">
+            <h2 id="nom" class="text shdw">{{ astreinte.utilisateur.toString() }}</h2>
+            <p id="numero" class="text shdw">{{ astreinte.utilisateur.SpaceNum() }}</p>   
+        </div>             
 
-<div class="example-wrapper">
-    <h1>Hello ✅</h1>
+        <a href="tel:{{ astreinte.utilisateur.numero }}"><i class="fas fa-phone call-icon shdw"></i></a>
+        <br>
+        <a href="sms:{{ astreinte.utilisateur.numero }}"><i class="far fa-comment-dots call-icon shdw"></i></a>
 
-    This friendly message is coming from: ouoiouii
+        {% if app.user is null %}
+        <div class="mt-5">
+            <a href="{{ path('security.login') }}" class="btn btn-primary">Connexion</a>
+        </div>              
+        {% endif %}
+    </div>
 </div>
 {% endblock %}
