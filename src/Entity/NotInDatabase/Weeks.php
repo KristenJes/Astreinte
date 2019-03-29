@@ -4,6 +4,7 @@ namespace App\Entity\NotInDatabase;
 
 class Weeks
 {
+    private $weeks;
     private $astreintes;
     private $year;
     private $indexAstreinte;
@@ -13,6 +14,7 @@ class Weeks
     {
         $this->astreintes = $astreintes;
         $this->year = $year;
+        $this->weeks = array();
         
         if($this->astreintes != null && count($this->astreintes) != 0){
             $this->indexAstreinte = 0;
@@ -24,6 +26,11 @@ class Weeks
     public function getAstreintes(): ?array
     {
         return $this->astreintes;
+    }
+
+    public function getWeeks(): ?array
+    {
+        return $this->weeks;
     }
 
     public function getIndexAstreinte(): ?\integer
@@ -56,18 +63,22 @@ class Weeks
     public function getByMonth()
     {
         $weeks = array();
-        $date = new \DateTime('first day of January ' . $this->year);
-        
-        while ($date->format("Y") == $this->year) {
+
+        $interval = new \DateInterval('P7D');
+        // $period   = new \DatePeriod(new \DateTime("first sunday of January " . $this->year), $interval, new \DateTime("last monday of December " . $this->year));
+        $period   = new \DatePeriod(new \DateTime($this->year."-01-04"), $interval, new \DateTime($this->year."-12-28"));
+
+        foreach ($period as $dt) {
             $astreinte = null;
             // Recherche si la prochaine Astreinte est égale a la semaine actuelle
-            if($this->getNextAstreinte() != null && $date->format("W") == $this->getNextAstreinte()->getSemaine()){
+            if($this->getNextAstreinte() != null && $dt->format("W") == $this->getNextAstreinte()->getSemaine()){
                 $astreinte = $this->getNextAstreinte();
                 $this->defineNextAstreinte();
-            }
+            }            
 
-            $weeks[$this->frDate($date)][] = new Week(new \DateTime($date->format("Y-m-d")), $astreinte);
-            $date->modify("+7 days");
+            $week = new Week(new \DateTime($dt->format("Y-m-d")), $astreinte);
+            $weeks[$this->frDate($dt)][] = $week;
+            $this->weeks[] = $week;
         }
 
         return $weeks;

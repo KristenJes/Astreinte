@@ -25,6 +25,11 @@ class Week
         return $this->astreinte;
     }
 
+    public function getDimanche()
+    {
+        return (new \DateTime())->setISODate($this->date("Y"), $this->date("W"), 7);
+    }
+
     public function getClass(): ?string
     {
         if($this->date < new \DateTime()){
