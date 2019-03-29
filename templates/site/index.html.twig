@@ -8,11 +8,22 @@
 
             <div class="col col-custom">
                 
-                <div class="image"></div>
+                <div class="image">
+
+                    <img src="
+                    {% if astreinte.utilisateur.photo is null %}
+                        {{  asset('images/empty.png') }}
+                    {% else %}
+                        {{ astreinte.utilisateur.getPhoto() }}
+
+                    {% endif %}" />
+
+                
+                </div>
                 
                 <p id="nom">{{ astreinte.utilisateur.toString() }}</p>
                 <p id="numero">{{ astreinte.utilisateur.SpaceNum() }}</p>
-                {# <p id="numero">{{ astreinte.utilisateur.SpaceNum() }}</p> #}
+                
 
                 <p><i class="fas fa-phone"></i></p>
 
