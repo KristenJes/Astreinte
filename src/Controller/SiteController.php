@@ -56,7 +56,7 @@ class SiteController extends AbstractController
     /**
      * Affichage du tableau de toutes les astreintes
      * 
-     * @Route("/astreintes/{year}", name="site.astreintes")
+     * @Route("/gestion/astreintes/{year}", name="site.astreintes")
      */
     public function astreintes($year = null, AstreinteRepository $repo)
     {
@@ -75,7 +75,7 @@ class SiteController extends AbstractController
     /**
      * Changement d'un utilisateur en charge de l'astreinte
      * 
-     * @Route("/astreinte/{year}/{week_num}", name="site.astreinte")
+     * @Route("/gestion/astreinte/{year}/{week_num}", name="site.astreinte")
      */
     public function astreinte($year, $week_num, Astreinte $astreinte = null, Request $request, AstreinteRepository $repo)
     {
@@ -112,7 +112,7 @@ class SiteController extends AbstractController
     /**
      * Suppression de l'astreinte selectionnée
      * 
-     * @Route("/astreinte/del/{year}/{week_num}", name="site.astreinte.delete")
+     * @Route("/gestion/astreinte/del/{year}/{week_num}", name="site.astreinte.delete")
      */
     public function astreinte_del($year, $week_num, AstreinteRepository $repo)
     {        
@@ -129,7 +129,7 @@ class SiteController extends AbstractController
     /**
      * Suppression de l'astreinte selectionnée
      * 
-     * @Route("/astreintes/generate/{year}", name="site.astreintes.generate")
+     * @Route("/gestion/astreintes/generate/{year}", name="site.astreintes.generate")
      */
     public function generate($year, UtilisateurRepository $utili_repo, AstreinteRepository $astr_repo)
     {
