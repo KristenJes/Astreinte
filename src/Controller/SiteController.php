@@ -37,6 +37,7 @@ class SiteController extends AbstractController
         return $this->render('site/index.html.twig', );
     }
     
+    
     /**
      * Affichage du tableau de toutes les astreintes
      * 
