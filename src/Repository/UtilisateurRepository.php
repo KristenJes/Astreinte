@@ -19,6 +19,7 @@ class UtilisateurRepository extends ServiceEntityRepository
         parent::__construct($registry, Utilisateur::class);
     }
 
+<<<<<<< HEAD
     public function findByRole($role)
     {
         return $this->createQueryBuilder('u')
@@ -30,6 +31,8 @@ class UtilisateurRepository extends ServiceEntityRepository
                     ->getResult()
         ;
     }
+=======
+>>>>>>> kilian
 
     // /**
     //  * @return Utilisateur[] Returns an array of Utilisateur objects

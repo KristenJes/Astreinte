@@ -1,11 +1,6 @@
-.container-fluid-custom{
-    text-align: center;
-}
-
-
-
 .row-custom > *{
     margin:auto;
+    text-align:center;
 }
 
 .image{
@@ -18,13 +13,26 @@
 }
 
 p{
-    color: black;
+    color: white;
     text-transform: uppercase;
     font-variant: small-caps;
-    text-shadow: black 0.1em 0.1em 0.2em;
-    font-size: 35px;
+    text-shadow: black 2px 2px 2px;
+}
+
+#nom {
+    font-size: 60px;
+}
+
+#numero {
+    font-size: 30px;
+    margin-top: -40px
 }
 
 i {
-    font-size: 65px;
+    font-size: 85px;
+    margin-top: 20px
+}
+
+.image {
+    margin: auto;
 }
