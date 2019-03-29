@@ -30,11 +30,11 @@ security:
                 csrf_token_generator: security.csrf.token_manager
                 csrf_parameter: _csrf_token
                 csrf_token_id: authentificate_secu
-                default_target_path: site.home
+                default_target_path: site.astreintes
                 always_use_default_target_path: true
             logout:
                 path: security.logout
-                target: security.login
+                target: site.home
                 
 
     role_hierarchy:
