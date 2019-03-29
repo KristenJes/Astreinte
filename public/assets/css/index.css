@@ -16,3 +16,15 @@
     background-color: white;
 
 }
+
+p{
+    color: black;
+    text-transform: uppercase;
+    font-variant: small-caps;
+    text-shadow: black 0.1em 0.1em 0.2em;
+    font-size: 35px;
+}
+
+i {
+    font-size: 65px;
+}
