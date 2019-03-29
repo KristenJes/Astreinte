@@ -43,6 +43,25 @@ class AstreinteRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findCurrent()
+    {
+        return $this->createQueryBuilder('a')
+
+                    ->addSelect('u')
+
+                    ->innerJoin('a.utilisateur', 'u')
+
+                    ->andWhere('a.annee = :annee')
+                    ->andWhere('a.semaine = :semaine')
+
+                    ->setParameter('annee', date('Y'))
+                    ->setParameter('semaine', date('W'))
+                    
+                    ->getQuery()
+                    ->getOneOrNullResult()
+        ;
+    }
+
     // /**
     //  * @return Astreinte[] Returns an array of Astreinte objects
     //  */

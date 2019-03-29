@@ -4,23 +4,25 @@
 
 {% block body %}
 
-    <div class="container-fluid container-fluid-custom">
-
         <div class="row row-custom">
-            <div class="col">
+
+            <div class="col col-custom">
                 
                 <div class="image"></div>
                 
-                <p>Kilian Magniez</p>
-                <p>06 01 44 64 28</p>
+                <p id="nom">{{ astreinte.utilisateur.toString() }}</p>
+                <p id="numero">{{ astreinte.utilisateur.SpaceNum() }}</p>
+                {# <p id="numero">{{ astreinte.utilisateur.SpaceNum() }}</p> #}
+
                 <p><i class="fas fa-phone"></i></p>
+
+                <p><i class="far fa-comment-dots"></i></p>
             
             </div>
             
 
         </div>
 
-    </div>
 
 
 {% endblock %}
