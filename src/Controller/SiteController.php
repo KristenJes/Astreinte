@@ -32,9 +32,24 @@ class SiteController extends AbstractController
      * 
      * @Route("/", name="site.home")
      */
-    public function index()
+    public function index(AstreinteRepository $repo)
     {
-        return $this->render('site/index.html.twig', );
+        $astreinte = $repo->findCurrent();
+
+        return $this->render('site/index.html.twig', [
+            'astreinte' => $astreinte
+        ]);
+    }
+
+    /**
+     * Affichage de qui est actuellement d'astreinte
+     * 
+     * @Route("/selection", name="site.selection")
+     */
+    public function selection(AstreinteRepository $repo)
+    {
+
+        return $this->render('site/selection.html.twig');
     }
     
     

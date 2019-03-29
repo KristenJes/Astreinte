@@ -219,4 +219,28 @@ class Utilisateur implements UserInterface
     public function toString(){
         return $this->getPrenom() . " " . $this->getNom();
     }
+
+    
+    // public function SpaceNum(){
+    //     $str=$this->getNumero();
+    //     if(strlen($str) == 10) {
+    //         $res = substr($str, 0, 2) .' ';
+    //         $res .= substr($str, 2, 2) .' ';
+    //         $res .= substr($str, 4, 2) .' ';
+    //         $res .= substr($str, 6, 2) .' ';
+    //         $res .= substr($str, 8, 2) .' ';
+    //         return $res;
+    //     }
+
+    //}
+
+    function SpaceNum()
+    {
+        $return = "";
+        foreach (str_split($this->numero) as $i => $char){
+            if($i % 2 == 0) $return .= " ";
+            $return .= $char;
+        }
+        return $return;
+    }
 }
