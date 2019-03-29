@@ -17,17 +17,31 @@ security:
             security: false
         main:
             anonymous: true
+            provider: in_database
+            
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 2592000 # 1 month in seconds
+                path: /
 
-            # activate different ways to authenticate
+            form_login:
+                login_path: security.login
+                check_path: security.login
+                csrf_token_generator: security.csrf.token_manager
+                csrf_parameter: _csrf_token
+                csrf_token_id: authentificate_secu
+                default_target_path: site.home
+                always_use_default_target_path: true
+            logout:
+                path: security.logout
+                target: security.login
+                
 
-            # http_basic: true
-            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-
-            # form_login: true
-            # https://symfony.com/doc/current/security/form_login_setup.html
+    role_hierarchy:
+        ROLE_SECRETAIRE: ROLE_USER
+        ROLE_ADMIN: ROLE_SECRETAIRE
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/gestion, roles: ROLE_SECRETAIRE }
