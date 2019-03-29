@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+
+<div class="row mt-5">
+    <div class="mx-auto col-md-4 col-custom">
+
+          <h1>Ajouter un conseiller</h1>
+
+         {{ form_start(formulaire) }}
+
+            <div class="form-group form-custom">
+
+
+               <p>{{ form_widget(formulaire.nom, { 'attr' : { 'placeholder' : "Nom" } }) }}</p> 
+
+               <p>{{ form_widget(formulaire.prenom, { 'attr' : { 'placeholder' : "Prénom" } }) }}</p>
+
+               <p>{{ form_widget(formulaire.email, { 'attr' : { 'placeholder' : "Adresse mail" } }) }}</p>
+
+               <p>{{ form_widget(formulaire.numero, { 'attr' : { 'placeholder' : "Numéro de téléphone" } }) }}</p>
+
+               <p>{{ form_widget(formulaire.mdp, { 'attr' : { 'placeholder' : "Mot de passe" } }) }}</p>
+
+               <p>{{ form_widget(formulaire.photo, { 'attr' : { 'placeholder' : "URL de la photo" } }) }}</p>
+
+      
+                
+              <button type="submit" class="btn btn-primary">Ajouter</button>
+
+            </div>
+   </div>
+</div>
+
+
+
+{% endblock %}
