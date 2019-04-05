@@ -6,31 +6,28 @@
 
 <div class="row mt-5">
     <div class="mx-auto col-md-4 col-custom">
+          <h1 class="mb-4">Ajouter un conseiller</h1>
 
-          <h1>Ajouter un conseiller</h1>
-
-         {{ form_start(formulaire) }}
-
-            <div class="form-group form-custom">
-
-
-               <p>{{ form_widget(formulaire.nom, { 'attr' : { 'placeholder' : "Nom" } }) }}</p> 
-
-               <p>{{ form_widget(formulaire.prenom, { 'attr' : { 'placeholder' : "Prénom" } }) }}</p>
-
-               <p>{{ form_widget(formulaire.email, { 'attr' : { 'placeholder' : "Adresse mail" } }) }}</p>
-
-               <p>{{ form_widget(formulaire.numero, { 'attr' : { 'placeholder' : "Numéro de téléphone" } }) }}</p>
-
-               <p>{{ form_widget(formulaire.mdp, { 'attr' : { 'placeholder' : "Mot de passe" } }) }}</p>
-
-               <p>{{ form_widget(formulaire.photo, { 'attr' : { 'placeholder' : "URL de la photo" } }) }}</p>
-
-      
+            {{ form_start(formulaire) }}
+            {# {% if erreurs is not empty %} #}
+               <div class="alert alert-danger mt-2">
+                  {# {% for erreur in erreurs %} #}
+                  {{ erreurs }}
+                  {# {% endfor %} #}
+               </div>
+            {# {% endif %} #}
+            {{ form_widget(formulaire.nom, { 'attr' : { 'placeholder' : "Nom", "class" : "mb-3" } }) }}
+            {{ form_widget(formulaire.prenom, { 'attr' : { 'placeholder' : "Prénom", "class" : "mb-3" } }) }}
+            {{ form_widget(formulaire.email, { 'attr' : { 'placeholder' : "Adresse mail", "class" : "mb-3" } }) }}
+            {{ form_widget(formulaire.numero, { 'attr' : { 'placeholder' : "Numéro de téléphone", "class" : "mb-3" } }) }}
+            {{ form_widget(formulaire.mdp, { 'attr' : { 'placeholder' : "Mot de passe", "class" : "mb-3" } }) }}
+            {{ form_widget(formulaire.photo, { 'attr' : { 'placeholder' : "URL de la photo", "class" : "mb-3" } }) }}
                 
-              <button type="submit" class="btn btn-primary">Ajouter</button>
-
+            <div class="form-group mt-3">
+               <a href="{{ path('site.utlisateurs') }}" class="btn btn-secondary mx-2">Annuler</a>
+               <button type="submit" class="btn btn-primary mx-2">Ajouter</button>
             </div>
+            {{ form_end(formulaire) }}
    </div>
 </div>
 
