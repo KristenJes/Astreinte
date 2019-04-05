@@ -8,6 +8,7 @@ use App\Repository\AstreinteRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use App\Entity\NotInDatabase\Weeks;
 use App\Entity\Astreinte;
+use App\Entity\Utilisateur;
 use App\Form\AstreinteType;
 use App\Entity\NotInDatabase\Week;
 use Symfony\Component\HttpFoundation\Request;
@@ -41,16 +42,7 @@ class SiteController extends AbstractController
         ]);
     }
 
-    /**
-     * Affichage de qui est actuellement d'astreinte
-     * 
-     * @Route("/selection", name="site.selection")
-     */
-    public function selection(AstreinteRepository $repo)
-    {
-
-        return $this->render('site/selection.html.twig');
-    }
+    
     
     
     /**
