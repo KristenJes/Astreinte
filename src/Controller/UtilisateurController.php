@@ -4,45 +4,86 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Repository\AstreinteRepository;
-use Doctrine\Common\Persistence\ObjectManager;
-use App\Entity\NotInDatabase\Weeks;
-use App\Entity\Astreinte;
-use App\Entity\Utilisateur;
-use App\Form\AstreinteType;
-use App\Entity\NotInDatabase\Week;
-use Symfony\Component\HttpFoundation\Request;
 use App\Repository\UtilisateurRepository;
-use Faker\Provider\zh_CN\DateTime;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use App\Entity\Utilisateur;
+use App\Form\UtilisateurType;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class UtilisateurController extends AbstractController
 {
     /**
-     * Affichage de qui est actuellement d'astreinte
-     * 
-     * @Route("/gestion/utilisateur/ajout", name="utlisateur.ajout")
+     * @var ObjectManager
      */
-    public function selection(AstreinteRepository $repo)
+    private $em;
+
+    public function __construct(ObjectManager $em)
     {
-        $utilisateur = New Utilisateur();
-        $form = $this->createFormBuilder($utilisateur)
-                     ->add('nom')
+        $this->em = $em;
+    }
 
-                     ->add('prenom')
+    /**
+     * @Route("/gestion/utilisateurs", name="site.utlisateurs")
+     */
+    public function utilisateurs()
+    {
+        return new Response("Mouais");
+    }
 
-                     ->add('email')
+    /**
+     * @Route("/gestion/utilisateurs/ajout", name="site.utlisateurs.ajout")
+     */
+    public function utilisateurs_ajout(Utilisateur $utilisateur = null, Request $request)
+    {
+        if($utilisateur == null){
+            $utilisateur = new Utilisateur();
+        }
 
-                     ->add('numero')
+        $form = $this->createForm(UtilisateurType::class, $utilisateur);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $utilisateur->setCreeA(new \DateTime());
 
-                     ->add('mdp', PasswordType::class )
+            $this->em->persist($utilisateur);
+            $this->em->flush();
 
-                     ->add('photo')
-
-                     ->getForm();
+            return $this->redirectToRoute("site.utilisateurs");
+        }
 
         return $this->render('utilisateur/ajout.html.twig', [
-            'formulaire' => $form->createView()
+            'formulaire' => $form->createView(),
+            'erreurs' => $form->getErrors()
+        ]);
+    }
+
+    /**
+     * @Route("/gestion/utilisateurs/{id}/edition", name="site.utlisateurs.edition")
+     */
+    public function utilisateurs_edition(?int $id = null, Utilisateur $utilisateur = null, Request $request, UtilisateurRepository $repo)
+    {
+        if($id == null){
+            return $this->redirectToRoute("site.utilisateurs");
+        }
+        
+        if($utilisateur == null){
+            $utilisateur = $repo->find($id);
+        }
+
+        $form = $this->createForm(UtilisateurType::class, $utilisateur);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $utilisateur->setCreeA(new \DateTime());
+
+            $this->em->persist($utilisateur);
+            $this->em->flush();
+
+            return $this->redirectToRoute("site.utilisateurs");
+        }
+
+        return $this->render('utilisateur/edition.html.twig', [
+            'formulaire' => $form->createView(),
+            'erreurs' => $form->getErrors()
         ]);
     }
 }
