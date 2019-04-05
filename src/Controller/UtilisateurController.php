@@ -7,7 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\UtilisateurRepository;
 use App\Entity\Utilisateur;
 use App\Form\UtilisateurType;
-use Symfony\Component\HttpFoundation\Response;
+use App\Repository\UtilisateurRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -26,9 +26,12 @@ class UtilisateurController extends AbstractController
     /**
      * @Route("/gestion/utilisateurs", name="site.utlisateurs")
      */
-    public function utilisateurs()
+    public function utilisateurs(UtilisateurRepository $repo)
     {
-        return new Response("Mouais");
+        $utilisateur = $repo->findAll();
+
+        return $this->render('utilisateur/index.html.twig', [
+            'utilisateur' => $utilisateur]);
     }
 
     /**
