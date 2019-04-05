@@ -7,7 +7,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\UtilisateurRepository;
 use App\Entity\Utilisateur;
 use App\Form\UtilisateurType;
-use App\Repository\UtilisateurRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -31,7 +30,7 @@ class UtilisateurController extends AbstractController
         $utilisateur = $repo->findAll();
 
         return $this->render('utilisateur/index.html.twig', [
-            'utilisateur' => $utilisateur]);
+            'utilisateurs' => $utilisateur]);
     }
 
     /**

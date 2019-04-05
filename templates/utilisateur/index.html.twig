@@ -20,24 +20,18 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-        </tr>
-        <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-        </tr>
-        <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-        </tr>
+        
+        {% for user in utilisateurs %}
+            <tr>
+                <th scope="row">{{ user.getPrenom() }}</th>
+                <td>{{ user.getNom() }}</td>
+                <td>{{ user.getEmail() }}</td>
+                <td>{{ user.Numero() }}</td>
+                <td><i class="fas fa-pen icone"></td>
+                <td><i class="fas fa-trash icone"></td>
+            </tr>
+        {% endfor %}
+        
     </tbody>
     </table>
 
