@@ -16,10 +16,12 @@ window.onload = function(){
 
 <div class="container-fluid">
     <div class="year-display">
-        <a href="{{ path('site.astreintes.generate', {'year': year}) }}" class="btn btn-warning float-right">Regénérer toutes les astreintes</a>
         <a href="{{ path('site.astreintes', {'year':year - 1}) }}"><i class="far fa-arrow-alt-circle-left change-year"></i></a>
-        <h2>{{ year }}</h2>
+        <h2 class="m-0">{{ year }}</h2>
         <a href="{{ path('site.astreintes', {'year':year + 1}) }}"><i class="far fa-arrow-alt-circle-right change-year"></i></a>
+
+        <a href="{{ path('site.astreintes.generate', {'year': year}) }}" class="btn btn-warning ml-auto mr-2" display="flex: 1 0 auto;">Regénérer toutes les astreintes</a>
+        <a href="{{ path('site.utilisateurs') }}" class="btn btn-info mx-2"><i class="fas fa-users"></i></a>
     </div>
     <div class="year row">
     {% for name, month in weeks %}

@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class UtilisateurType extends AbstractType
 {
@@ -18,7 +19,7 @@ class UtilisateurType extends AbstractType
             ->add('prenom')
             ->add('email', EmailType::class)
             ->add('numero')
-            ->add('mdp', PasswordType::class)
+            ->add('password', PasswordType::class)
             ->add('photo')
         ;
     }
