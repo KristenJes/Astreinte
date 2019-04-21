@@ -45,7 +45,7 @@ class Utilisateur implements UserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\NotBlank
      */
-    private $mdp;
+    private $password;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -125,18 +125,6 @@ class Utilisateur implements UserInterface
         return $this;
     }
 
-    public function getMdp(): ?string
-    {
-        return $this->mdp;
-    }
-
-    public function setMdp(string $mdp): self
-    {
-        $this->mdp = $mdp;
-
-        return $this;
-    }
-
     public function getPhoto(): ?string
     {
         return $this->photo;
@@ -206,7 +194,13 @@ class Utilisateur implements UserInterface
 
     public function getPassword()
     {
-        return $this->mdp;
+        return $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+        return $this;
     }
 
     public function getUsername()

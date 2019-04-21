@@ -18,11 +18,11 @@
             {{ form_widget(formulaire.prenom, { 'attr' : { 'placeholder' : "Prénom", "class" : "mb-3" } }) }}
             {{ form_widget(formulaire.email, { 'attr' : { 'placeholder' : "Adresse mail", "class" : "mb-3" } }) }}
             {{ form_widget(formulaire.numero, { 'attr' : { 'placeholder' : "Numéro de téléphone", "class" : "mb-3" } }) }}
-            {{ form_widget(formulaire.mdp, { 'attr' : { 'placeholder' : "Mot de passe", "class" : "mb-3" } }) }}
+            {{ form_widget(formulaire.password, { 'attr' : { 'placeholder' : "Mot de passe", "class" : "mb-3" } }) }}
             {{ form_widget(formulaire.photo, { 'attr' : { 'placeholder' : "URL de la photo", "class" : "mb-3" } }) }}
                 
             <div class="form-group mt-3">
-               <a href="{{ path('site.utlisateurs') }}" class="btn btn-secondary mx-2">Annuler</a>
+               <a href="{{ path('site.utilisateurs') }}" class="btn btn-secondary mx-2">Annuler</a>
                <button type="submit" class="btn btn-primary mx-2">Enregistrer</button>
             </div>
             {{ form_end(formulaire) }}
