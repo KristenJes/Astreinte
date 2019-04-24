@@ -125,14 +125,17 @@ class SiteController extends AbstractController
      */
     public function generate($year, UtilisateurRepository $utili_repo, AstreinteRepository $astr_repo)
     {
-        $now = new \DateTime();        
+        $now = new \DateTime();    
+        if(date('l') != "Monday"){
+            $now->modify("last monday");
+        }
         $semaine = $year == date("Y") ? $now->format("W") : 1;
         
         // Suppression de toutes les anciennes Astreintes
         $astreintes = $astr_repo->findByYear($year, $semaine);
         foreach($astreintes as $astreinte){
             $date = (new \DateTime())->setISODate($astreinte->getAnnee(), $astreinte->getSemaine());
-            if($date > $now){
+            if($date >= $now){
                 $this->em->remove($astreinte);
             }
         } 
@@ -142,6 +145,7 @@ class SiteController extends AbstractController
         $utilisateurs = $utili_repo->findByRole("USER");
         $i = mt_rand(0, count($utilisateurs));
 
+        // Ajoute tous les nouveaux utilisateurs jusqu'a la fin de l'année
         $interval = new \DateInterval('P1W');
         $period   = new \DatePeriod(new \DateTime($year."-01-04"), $interval, new \DateTime($year."-12-28"));
         foreach ($period as $dt) {

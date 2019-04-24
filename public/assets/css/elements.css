@@ -5,9 +5,9 @@
 .year-display{
     padding: 20px;
     margin-left: 50px;
-}
-.year-display *{
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .year-display a{
     margin: 0 40px;
@@ -20,9 +20,6 @@
 .weeks{
     margin-bottom: 25px;
     color: white;
-}
-.weeks .month-title{
-
 }
 
 .week{
