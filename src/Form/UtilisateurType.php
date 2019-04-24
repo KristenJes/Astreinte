@@ -6,6 +6,9 @@ use App\Entity\Utilisateur;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class UtilisateurType extends AbstractType
 {
@@ -14,19 +17,17 @@ class UtilisateurType extends AbstractType
         $builder
             ->add('nom')
             ->add('prenom')
-            ->add('email')
+            ->add('email', EmailType::class)
             ->add('numero')
-            ->add('mdp')
+            ->add('password', PasswordType::class)
             ->add('photo')
-            ->add('roles')
-            ->add('creeA')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Utilisateur::class,
+            'data_class' => Utilisateur::class
         ]);
     }
 }

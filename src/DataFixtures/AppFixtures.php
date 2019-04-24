@@ -34,7 +34,7 @@ class AppFixtures extends Fixture
             $utilisateur->setNom($faker->lastName())
                         ->setPrenom($faker->firstName())    
                         ->setEmail($faker->email())
-                        ->setMdp($this->encoder->encodePassword($utilisateur, 'password'))
+                        ->setPassword($this->encoder->encodePassword($utilisateur, 'password'))
                         ->setPhoto("http://lorempixel.com/800/400/people/")
                         ->setRoles(array("ROLE_USER"))
                         ->setNumero('06' . $faker->randomNumber(8))
