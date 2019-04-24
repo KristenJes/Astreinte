@@ -101,22 +101,7 @@ class SiteController extends AbstractController
         ]);
     }
 
-    /**
-     * Suppression de l'astreinte selectionnée
-     * 
-     * @Route("/gestion/astreinte/del/{year}/{week_num}", name="site.astreinte.delete")
-     */
-    public function astreinte_del($year, $week_num, AstreinteRepository $repo)
-    {        
-        $astreinte = $repo->find(["annee"=>$year, "semaine"=>$week_num]);
-        
-        if($astreinte != null){
-            $this->em->remove($astreinte);
-            $this->em->flush();
-        }
 
-        return $this->redirectToRoute("site.astreintes", ["year" => $year]);
-    }
     
     /**
      * Suppression de l'astreinte selectionnée
@@ -160,6 +145,23 @@ class SiteController extends AbstractController
         }
 
         $this->em->flush();
+
+        return $this->redirectToRoute("site.astreintes", ["year" => $year]);
+    }
+
+    /**
+     * Suppression de l'astreinte selectionnée
+     * 
+     * @Route("/gestion/astreinte/del/{year}/{week_num}", name="site.astreinte.delete")
+     */
+    public function astreinte_del($year, $week_num, AstreinteRepository $repo)
+    {        
+        $astreinte = $repo->find(["annee"=>$year, "semaine"=>$week_num]);
+        
+        if($astreinte != null){
+            $this->em->remove($astreinte);
+            $this->em->flush();
+        }
 
         return $this->redirectToRoute("site.astreintes", ["year" => $year]);
     }

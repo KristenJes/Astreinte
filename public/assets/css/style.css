@@ -20,5 +20,10 @@ a:not(.btn), a:visited:not(.btn), a:hover:not(.btn), a:active:not(.btn){
 .icone {
 
     font-size: 25px;
+    color:#919aa1;
 
+}
+
+tr:hover{
+    background-color:greenyellow;
 }

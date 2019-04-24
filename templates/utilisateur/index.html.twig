@@ -14,9 +14,8 @@
         <th scope="col">Prenom</th>
         <th scope="col">Adresse mail</th>
         <th scope="col">Numéro de téléphone</th>
-        <th scope="col"><i class="fas fa-pen icone"></i></th>
-        <th scope="col"><i class="fas fa-trash icone"></i></th>
-        
+        <th><i class="fas fa-pen icone"></th>
+        <th><i class="fas fa-trash icone"></th>
         </tr>
     </thead>
     <tbody>
@@ -27,8 +26,8 @@
                 <td>{{ user.getNom() }}</td>
                 <td>{{ user.getEmail() }}</td>
                 <td>{{ user.Numero() }}</td>
-                <td><i class="fas fa-pen icone"></td>
-                <td><i class="fas fa-trash icone"></td>.
+                <td scope="col"><a href="{{ path('site.utilisateurs.edition', {'id':user.id}) }}"><i class="fas fa-pen icone"></i></a></td>
+                <td scope="col"><a><i class="fas fa-trash icone"></i></a></td>
             </tr>
         {% endfor %}
         
