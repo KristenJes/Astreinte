@@ -1,4 +1,4 @@
-/* CSS pour les case d'astreinte */
+/* CSS pour l'interface d'affichage  */
 
 
 .year-display{
@@ -69,4 +69,10 @@
     margin: 0;
     margin-top: -15px;    
     text-transform: uppercase;
+}
+
+
+.table-custom{
+    background-color: white;
+    text-align: center;
 }

@@ -17,7 +17,7 @@ class UtilisateurController extends AbstractController
      * @var ObjectManager
      */
     private $em;
-w
+
     public function __construct(ObjectManager $em)
     {
         $this->em = $em;
@@ -63,7 +63,7 @@ w
     }
 
     /**
-     * @Route("/gestion/utilisateurs/{id}/edition", name="site.utlisateurs.edition")
+     * @Route("/gestion/utilisateurs/{id}/edition", name="site.utilisateurs.edition")
      */
     public function utilisateurs_edition(?int $id = null, Utilisateur $utilisateur = null, Request $request, UtilisateurRepository $repo, UserPasswordEncoderInterface $encoder)
     {
@@ -92,4 +92,6 @@ w
             'erreurs' => $form->getErrors()
         ]);
     }
+
+
 }
