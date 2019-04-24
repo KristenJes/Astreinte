@@ -17,7 +17,7 @@ class UtilisateurController extends AbstractController
      * @var ObjectManager
      */
     private $em;
-
+w
     public function __construct(ObjectManager $em)
     {
         $this->em = $em;
@@ -31,7 +31,7 @@ class UtilisateurController extends AbstractController
         $utilisateur = $repo->findAll();
 
         return $this->render('utilisateur/index.html.twig', [
-            'utilisateur' => $utilisateur]);
+            'utilisateurs' => $utilisateur]);
     }
 
     /**
