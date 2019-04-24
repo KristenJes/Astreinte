@@ -94,4 +94,20 @@ class UtilisateurController extends AbstractController
     }
 
 
+    /**
+     * Suppression de l'astreinte selectionnée
+     * 
+     * @Route("/gestion/utilisateurs/del/{id}", name="site.utilisateurs.delete")
+     */
+    public function utilisateur_del($id, UtilisateurRepository $repo)
+    {        
+        $utilisateur = $repo->find($id);
+        
+        if($utilisateur != null){
+            $this->em->remove($utilisateur);
+            $this->em->flush();
+        }
+
+        return $this->redirectToRoute("site.utilisateurs");
+    }
 }

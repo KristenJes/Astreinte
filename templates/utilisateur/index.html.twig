@@ -27,7 +27,7 @@
                 <td>{{ user.getEmail() }}</td>
                 <td>{{ user.Numero() }}</td>
                 <td scope="col"><a href="{{ path('site.utilisateurs.edition', {'id':user.id}) }}"><i class="fas fa-pen icone"></i></a></td>
-                <td scope="col"><a><i class="fas fa-trash icone"></i></a></td>
+                <td scope="col"><a href="{{ path('site.utilisateurs.delete', {'id':user.id}) }}"><i class="fas fa-trash icone"></i></a></td>
             </tr>
         {% endfor %}
         
