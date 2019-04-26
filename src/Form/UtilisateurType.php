@@ -19,7 +19,9 @@ class UtilisateurType extends AbstractType
             ->add('prenom')
             ->add('email', EmailType::class)
             ->add('numero')
-            ->add('password', PasswordType::class)
+            ->add('password', PasswordType::class, [
+                "required" => false
+            ])
             ->add('photo')
         ;
     }

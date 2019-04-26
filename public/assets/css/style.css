@@ -15,3 +15,25 @@ a:not(.btn), a:visited:not(.btn), a:hover:not(.btn), a:active:not(.btn){
 .container-fluid{
     margin-top: 50px;
 }
+
+
+.icone {
+
+    font-size: 25px;
+    color:#919aa1;
+
+}
+
+tr:hover{
+    background-color:greenyellow;
+}
+
+.bouton-ajout{
+    font-size: 30px;
+    margin-right: 65px;
+}
+
+.bouton-calendrier{
+    font-size: 30px;
+    margin-left: 65px;
+}
