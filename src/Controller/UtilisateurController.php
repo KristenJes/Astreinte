@@ -67,22 +67,29 @@ class UtilisateurController extends AbstractController
      */
     public function utilisateurs_edition(?int $id = null, Utilisateur $utilisateur = null, Request $request, UtilisateurRepository $repo, UserPasswordEncoderInterface $encoder)
     {
+        // Si aucun id n'est ajouter dans l'url
         if($id == null){
             return $this->redirectToRoute("site.utilisateurs");
         }
+        $utilisateur = $repo->find($id);
         
+        // Si l'id de l'utilisateur n'est pas trouver dans la base de données
         if($utilisateur == null){
-            $utilisateur = $repo->find($id);
+            return $this->redirectToRoute("site.utilisateurs");
         }
 
+        // Ajoute les inforamations de l'utilisateur dans le formulaire
         $form = $this->createForm(UtilisateurType::class, $utilisateur);
         $form->handleRequest($request);
+        
+        // Vérifie si le formulaire a été submiter
         if($form->isSubmitted() && $form->isValid()){
             if($utilisateur->getPassword() == null){
                 $encoded = $encoder->encodePassword($utilisateur, $utilisateur->getPassword());
                 $utilisateur->setPassword($encoded);
             }
 
+            // Ajoute dans la base de données
             $this->em->persist($utilisateur);
             $this->em->flush();
 
