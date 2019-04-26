@@ -78,8 +78,10 @@ class UtilisateurController extends AbstractController
         $form = $this->createForm(UtilisateurType::class, $utilisateur);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
-            $encoded = $encoder->encodePassword($utilisateur, $utilisateur->getPassword());
-            $utilisateur->setPassword($encoded);
+            if($utilisateur->getPassword() == null){
+                $encoded = $encoder->encodePassword($utilisateur, $utilisateur->getPassword());
+                $utilisateur->setPassword($encoded);
+            }
 
             $this->em->persist($utilisateur);
             $this->em->flush();
