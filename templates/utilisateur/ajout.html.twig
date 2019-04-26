@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+
+<div class="row mt-5">
+    <div class="mx-auto col-md-4 col-custom">
+          <h1 class="mb-4">Ajouter un conseiller</h1>
+
+            {{ form_start(formulaire) }}
+            {# {% if erreurs is not empty %} #}
+               {# <div class="alert alert-danger mt-2">
+                  {{ erreurs }}}
+               </div> #}
+            {# {% endif %} #}
+            {{ form_widget(formulaire.nom, { 'attr' : { 'placeholder' : "Nom", "class" : "mb-3" } }) }}
+            {{ form_widget(formulaire.prenom, { 'attr' : { 'placeholder' : "Prénom", "class" : "mb-3" } }) }}
+            {{ form_widget(formulaire.email, { 'attr' : { 'placeholder' : "Adresse mail", "class" : "mb-3" } }) }}
+            {{ form_widget(formulaire.numero, { 'attr' : { 'placeholder' : "Numéro de téléphone", "class" : "mb-3" } }) }}
+            {{ form_widget(formulaire.password, { 'attr' : { 'placeholder' : "Mot de passe", "class" : "mb-3" } }) }}
+            {{ form_widget(formulaire.photo, { 'attr' : { 'placeholder' : "URL de la photo", "class" : "mb-3" } }) }}
+                
+            <div class="form-group mt-3">
+               <a href="{{ path('site.utilisateurs') }}" class="btn btn-secondary mx-2">Annuler</a>
+               <button type="submit" class="btn btn-primary mx-2">Ajouter</button>
+            </div>
+            {{ form_end(formulaire) }}
+   </div>
+</div>
+
+
+
+{% endblock %}
