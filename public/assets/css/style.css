@@ -1,0 +1,40 @@
+html, body{
+    background-color: #3a6181;
+    color: white;
+}
+
+h2{
+    font-size: 35px;
+    font-weight: 700;
+}
+a:not(.btn), a:visited:not(.btn), a:hover:not(.btn), a:active:not(.btn){
+    text-decoration: none;
+    color: white;
+}
+
+.container-fluid{
+    margin-top: 50px;
+}
+
+
+.icone {
+    font-size: 25px;
+}
+
+tr:hover{
+    background-color:#DDD;
+}
+
+.bouton-ajout{
+    font-size: 30px;
+    margin-right: 65px;
+}
+
+.bouton-calendrier{
+    font-size: 30px;
+    margin-left: 65px;
+}
+
+.btn-delete{
+    color: white;
+}

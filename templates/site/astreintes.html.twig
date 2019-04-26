@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Astreintes{% endblock %}
+
+{% block body %}
+<script>
+// Changement des flèches du changement d'années lors du passage de la souris 
+window.onload = function(){
+    $(".change-year").hover(function(){
+        $(this).removeClass("far").addClass("fas");
+    },
+    function(){
+        $(this).removeClass("fas").addClass("far");
+    })
+}
+</script>
+
+<div class="container-fluid">
+    <div class="year-display">
+        <a href="{{ path('site.astreintes', {'year':year - 1}) }}"><i class="far fa-arrow-alt-circle-left change-year"></i></a>
+        <h2 class="m-0">{{ year }}</h2>
+        <a href="{{ path('site.astreintes', {'year':year + 1}) }}"><i class="far fa-arrow-alt-circle-right change-year"></i></a>
+
+        <a href="{{ path('site.astreintes.generate', {'year': year}) }}" class="btn btn-warning ml-auto mr-2" display="flex: 1 0 auto;">Regénérer toutes les astreintes</a>
+        <a href="{{ path('site.utilisateurs') }}" class="btn btn-info mx-2"><i class="fas fa-users"></i></a>
+    </div>
+    <div class="year row">
+    {% for name, month in weeks %}
+        <div class="weeks col-lg-2">
+            <h3 class="month-title">{{ name }}</h3>
+            {% for week in month %}
+                <div class="week">
+                    <div class="week-top">
+                        <span class="week-date">{{ week.getMondayDate() | date("d/m") }} - {{ week.getSundayDate() | date("d/m") }}</span>
+                        <span class="week-number">sem. {{ week.getWeekNum() }}</span>
+                    </div>
+                    <a {% if week.getClass() != 'passed' %}href="{{ path('site.astreinte', {'year': year, 'week_num': week.getWeekNum()}) }}"{% endif %}{% if week.getClass() == 'passed' %} style="cursor: default;"{% endif %}>
+                        <div class="week-content {{ week.getClass() }}">
+                            <p class="week-user">
+                            {% if week.getAstreinte() is not null %}
+                                {{ week.astreinte.utilisateur.toString() }}
+                            {% else %}
+                                &nbsp;
+                            {% endif %}
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}

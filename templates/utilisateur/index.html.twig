@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des utilisateurs{% endblock %}
+
+{% block body %}
+
+<div class="d-flex">
+<a class="btn btn-info bouton-calendrier" href="{{ path('site.astreintes') }}"><i class="fas fa-calendar-alt"></i></a>
+<a class=" btn btn-warning ml-auto bouton-ajout" href="{{ path('site.utlisateurs.ajout') }}"><i class="fas fa-plus"></i></a>
+
+</div>
+
+<br />
+
+
+<div class="table-responsive">
+
+
+    <table class="table table-custom">
+    <thead class="thead-dark">
+        <tr>
+        <th scope="col">Nom</th>
+        <th scope="col">Prenom</th>
+        <th scope="col">Adresse mail</th>
+        <th scope="col">Numéro de téléphone</th>
+        <th><i class="fas fa-pen icone"></th>
+        <th><i class="fas fa-trash icone"></th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        {% for user in utilisateurs %}
+            <tr>
+                <th scope="row">{{ user.getPrenom() }}</th>
+                <td>{{ user.getNom() }}</td>
+                <td>{{ user.getEmail() }}</td>
+                <td>{{ user.Numero() }}</td>
+                <td scope="col"><a href="{{ path('site.utilisateurs.edition', {'id':user.id}) }}" class="btn btn-success"><i class="fas fa-pen icone"></i></a></td>
+                <td scope="col"><a href="{{ path('site.utilisateurs.delete', {'id':user.id}) }}" class="btn btn-danger btn-delete"><i class="fas fa-trash icone"></i></a></td>
+            </tr>
+        {% endfor %}
+        
+    </tbody>
+    </table>
+
+</div>
+
+{% endblock %}
