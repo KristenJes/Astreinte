@@ -4,8 +4,17 @@
 
 {% block body %}
 
+<div class="d-flex">
+<a class="btn btn-info bouton-calendrier" href="{{ path('site.astreintes') }}"><i class="fas fa-calendar-alt"></i></a>
+<a class=" btn btn-warning ml-auto bouton-ajout" href="{{ path('site.utlisateurs.ajout') }}"><i class="fas fa-plus"></i></a>
+
+</div>
+
+<br />
+
 
 <div class="table-responsive">
+
 
     <table class="table table-custom">
     <thead class="thead-dark">
