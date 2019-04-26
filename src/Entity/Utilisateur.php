@@ -43,7 +43,6 @@ class Utilisateur implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank
      */
     private $password;
 
@@ -197,7 +196,7 @@ class Utilisateur implements UserInterface
         return $this->password;
     }
 
-    public function setPassword(string $password): self
+    public function setPassword(?string $password): self
     {
         $this->password = $password;
         return $this;

@@ -78,8 +78,10 @@ class UtilisateurController extends AbstractController
         $form = $this->createForm(UtilisateurType::class, $utilisateur);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
-            $encoded = $encoder->encodePassword($utilisateur, $utilisateur->getPassword());
-            $utilisateur->setPassword($encoded);
+            if($utilisateur->getPassword() == null){
+                $encoded = $encoder->encodePassword($utilisateur, $utilisateur->getPassword());
+                $utilisateur->setPassword($encoded);
+            }
 
             $this->em->persist($utilisateur);
             $this->em->flush();
@@ -94,4 +96,20 @@ class UtilisateurController extends AbstractController
     }
 
 
+    /**
+     * Suppression de l'astreinte selectionnée
+     * 
+     * @Route("/gestion/utilisateurs/del/{id}", name="site.utilisateurs.delete")
+     */
+    public function utilisateur_del($id, UtilisateurRepository $repo)
+    {        
+        $utilisateur = $repo->find($id);
+        
+        if($utilisateur != null){
+            $this->em->remove($utilisateur);
+            $this->em->flush();
+        }
+
+        return $this->redirectToRoute("site.utilisateurs");
+    }
 }
