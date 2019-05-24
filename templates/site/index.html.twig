@@ -28,19 +28,20 @@
             <br>
             <a href="sms:{{ astreinte.utilisateur.numero }}"><i class="far fa-comment-dots call-icon shdw"></i></a>
 
-            <div class="mt-5">  
-            {% if app.user is null %}
-                <a href="{{ path('security.login') }}" class="btn btn-primary">Connexion</a>  
-            {% else %}        
-                <a class="btn btn-info" href="{{ path('site.astreintes') }}"><i class="fas fa-calendar-alt" style="font-size: 30px;"></i></a>
-            {% endif %}
-            </div>
         {% else %}
             <div class="mt-5">
                 <h2>Aucune Astreinte prévu</h2>
                 <i class="fas fa-calendar-times mt-2" style="color: black;font-size:50px;"></i>
             </div>
         {% endif %}
+
+        <div class="mt-5 mb-3">  
+        {% if app.user is null %}
+            <a href="{{ path('security.login') }}" class="btn btn-primary">Connexion</a>  
+        {% else %}        
+            <a class="btn btn-info" href="{{ path('site.astreintes') }}"><i class="fas fa-calendar-alt" style="font-size: 30px;"></i></a>
+        {% endif %}
+        </div>
     </div>
 </div>
 {% endblock %}

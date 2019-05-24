@@ -55,6 +55,7 @@ class SiteController extends AbstractController
         // Définition de l'année des Astreintes à l'année actuelle si elle n'est pas renseignée
         if($year == null) $year = intval(date("Y"));
 
+        // Récupère toutes les astreintes dans la base de données en fonction de l'année
         $astreintes = $repo->findByYear($year);
         $weeks = new Weeks($astreintes, $year);
         
@@ -71,24 +72,30 @@ class SiteController extends AbstractController
      */
     public function astreinte($year, $week_num, Astreinte $astreinte = null, Request $request, AstreinteRepository $repo)
     {
+        // Récupère la semaine actuelle
         $date = new \DateTime();
         $date->setISODate($year, $week_num);
         $week = new Week($date);
-
-        // if($astreinte == null) $astreinte = new Astreinte();
         
+        // Récupère une astreinte dans la base de données avec le numéro de semaine et l'année
         if($astreinte == null){
             $astreinte = $repo->find(["annee"=>$year, "semaine"=>$week_num]);
+            // Si aucune astreinte n'est enregistrée pour cette semaine, on créer une nouvelle
             if($astreinte == null){
                 $astreinte = new Astreinte();
             }
         }
 
+        // Création du formulaire avec l'astreinte selectionné
         $form = $this->createForm(AstreinteType::class, $astreinte);
         $form->handleRequest($request);
+
+        // Vérifie si le formulaire à été envoyé
         if($form->isSubmitted() && $form->isValid()){
             $astreinte->setAnnee($year)
                       ->setSemaine(intval($week_num));
+
+            // Ajoute dans la base l'astreinte
             $this->em->persist($astreinte);
             $this->em->flush();
 

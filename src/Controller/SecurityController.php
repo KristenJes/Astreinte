@@ -37,6 +37,9 @@ class SecurityController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils, TranslatorInterface $translator)
     {        
+        // La fonction récupère automatiquement les variables
+
+        // On récupère les erreurs et le dernier nom entrée si il y en a
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
         // Notification
