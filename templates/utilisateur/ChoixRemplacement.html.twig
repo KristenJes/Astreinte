@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Astreintes{% endblock %}
+
+{% block body %}
+
+
+
+
+<div class="container-fluid">
+
+    <h1>Astreinte Semaine {{  }} </h1>
+
+        <a href="{{ path('site.utilisateur.conseiller.permutation') }}" class="btn btn-warning ml-auto mr-2" display="flex: 1 0 auto;">Permutation</a>
+
+        <a href="{{ path('site.utilisateur.conseiller.remplacement') }}" class="btn btn-warning ml-auto mr-2" display="flex: 1 0 auto;">Remplacement</a>
+
+</div>
+
+
+{% endblock %}

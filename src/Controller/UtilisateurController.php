@@ -7,6 +7,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\UtilisateurRepository;
 use App\Entity\Utilisateur;
 use App\Form\UtilisateurType;
+use App\Entity\Astreinte;
+use App\Form\AstreinteType;
+use App\Repository\AstreinteRepository;
+use App\Entity\NotInDatabase\Weeks;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -112,4 +116,73 @@ class UtilisateurController extends AbstractController
 
         return $this->redirectToRoute("site.utilisateurs");
     }
+
+
+
+
+    /**
+     * Affichage du tableau de toutes les astreintes
+     * 
+     * @Route("/gestion/utilisateurs/conseiller/{year}", name="site.utilisateurs.conseiller")
+     */
+    public function astreintes($year = null, AstreinteRepository $repo)
+    {
+        // Définition de l'année des Astreintes à l'année actuelle si elle n'est pas renseignée
+        if($year == null) $year = intval(date("Y"));
+
+        $astreintes = $repo->findByYear($year);
+        $weeks = new Weeks($astreintes, 2019);
+        
+        return $this->render('utilisateur/astreintesConseiller.html.twig', [
+            "year" => $year,
+            "weeks" => $weeks->getByMonth()
+        ]);
+    }
+
+    /**
+     * Affichage de l'IHM du choix du mode de remplacement
+     * 
+     * @Route("/gestion/utilisateurs/conseiller/choixremplacement", name="site.utilisateurs.conseiller.choixremplacement")
+     */
+    public function choixremplacement()
+    {
+       
+        // Définition de l'année des Astreintes à l'année actuelle si elle n'est pas renseignée
+  
+        return $this->render('utilisateur/ChoixRemplacement.html.twig', [
+
+
+        ]);
+    }
+
+
+    /**
+     * Affichage de l'IHM de permutation des conseiller
+     * 
+     * @Route("/gestion/utilisateurs/conseiller/permuation{year}", name="site.utilisateurs.conseiller.permutation")
+     */
+    public function permuation($year = null, AstreinteRepository $repo)
+    {
+       
+        
+        return $this->render('utilisateur/Permuation.html.twig', [
+
+        ]);
+    }
+
+
+    /**
+     * Affichage de l'IHM de remplacement des conseiller
+     * 
+     * @Route("/gestion/utilisateurs/conseiller/remplacement{year}", name="site.utilisateurs.conseiller.remplacement")
+     */
+    public function remplacement($year = null, AstreinteRepository $repo)
+    {
+       
+        
+        return $this->render('utilisateur/Remplacement.html.twig', [
+
+        ]);
+    }
+
 }
